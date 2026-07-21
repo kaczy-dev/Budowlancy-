@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  /* Overwrite amber colors with vibrant high-visibility warning hazard-orange and construction gold/yellow */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24; /* Warning Gold / Yellow */
+  --color-amber-500: #f59e0b; /* Hazard Amber / Orange Accent */
+  --color-amber-600: #d97706; /* Core warning orange */
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+
+  /* Overwrite standard white to dark carbon-slate for cards, enabling uniform high-tech dark background */
+  --color-white: #0a0f1d;
+
+  /* Overwrite slate colors to a magnificent cybernetic blue-black theme with high industrial contrast */
+  --color-slate-50: #030712;   /* Main background - absolute deep black */
+  --color-slate-100: #070d19;  /* Secondary background / deep slate-black */
+  --color-slate-200: #10192e;  /* Borders and panels */
+  --color-slate-300: #1e2d4a;  /* Stiffer dividers */
+  --color-slate-400: #3b527a;  /* Inactive text / details */
+  --color-slate-500: #5c74a6;  /* Description text */
+  --color-slate-600: #8ba2d4;  /* Muted headings */
+  --color-slate-700: #b9ccf2;  /* Clear readable text */
+  --color-slate-800: #e0ecff;  /* Main text / bright blue-white */
+  --color-slate-900: #f0f5ff;  /* Bold highlights */
+  --color-slate-950: #020617;  /* Deepest navy */
+
+  /* Cybernetic & Industrial Animations */
+  --animate-cyber-pulse: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-border-glow: border-glow 4s linear infinite;
+  --animate-shimmer-fast: shimmer-fast 1.5s infinite linear;
+  --animate-slow-bg: slow-bg-zoom 30s ease-in-out infinite;
+}
+
+@keyframes slow-bg-zoom {
+  0%, 100% {
+    transform: scale(1.03) translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.09) translate(-8px, -4px) rotate(0.4deg);
+  }
+}
+
+@keyframes cyber-pulse {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.3)); }
+  50% { opacity: 0.85; filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.65)); }
+}
+
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(245, 158, 11, 0.25); box-shadow: 0 0 8px rgba(245, 158, 11, 0.1); }
+  50% { border-color: rgba(245, 158, 11, 0.75); box-shadow: 0 0 16px rgba(245, 158, 11, 0.35); }
+}
+
+@keyframes shimmer-fast {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Base style additions */
+body {
+  -webkit-tap-highlight-color: transparent;
+  background-color: #030712;
+}
+
+/* Cybernetic Buttons & Interactions Utilities */
+@utility btn-cyber-primary {
+  @apply relative bg-gradient-to-r from-amber-500 via-amber-600 to-orange-600 text-slate-950 font-black uppercase tracking-wider text-[11px] rounded-2xl px-5 py-3 flex items-center justify-center gap-2 cursor-pointer shadow-md select-none transition-all duration-300 outline-none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    @apply scale-[1.04] bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.65), 0 4px 15px rgba(249, 115, 22, 0.35);
+  }
+
+  &:active {
+    @apply scale-[0.96] opacity-95;
+  }
+
+  &:focus-visible {
+    @apply ring-2 ring-amber-500 ring-offset-2 ring-offset-slate-950;
+  }
+}
+
+@utility btn-cyber-secondary {
+  @apply relative bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 hover:border-amber-500/50 text-slate-300 hover:text-amber-400 font-extrabold uppercase tracking-wide text-[10px] rounded-2xl px-4 py-3 flex items-center justify-center gap-2 cursor-pointer select-none transition-all duration-300 outline-none;
+
+  &:hover {
+    @apply scale-[1.02];
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+  }
+
+  &:active {
+    @apply scale-[0.98];
+  }
+
+  &:focus-visible {
+    @apply ring-2 ring-amber-500/50 ring-offset-2 ring-offset-slate-950;
+  }
+}
+
+@utility btn-cyber-tab {
+  @apply flex-1 py-2.5 text-xs font-black rounded-xl transition-all duration-200 cursor-pointer text-slate-500 hover:text-slate-300 hover:bg-slate-200/5 outline-none;
+
+  &:focus-visible {
+    @apply ring-1 ring-amber-500/50;
+  }
+}
+
+@utility btn-cyber-icon {
+  @apply p-2 rounded-xl border border-slate-700/50 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-amber-400 cursor-pointer select-none transition-all duration-200 outline-none;
+
+  &:hover {
+    @apply scale-110 border-amber-500/40;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+  }
+
+  &:active {
+    @apply scale-90;
+  }
+
+  &:focus-visible {
+    @apply ring-2 ring-amber-500/50;
+  }
+}
+
+@utility cyber-glow-border {
+  @apply border border-amber-500/25 animate-border-glow;
+}
+
+@utility cyber-shimmer {
+  background-image: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+  background-size: 200% 100%;
+  @apply animate-shimmer-fast;
+}
+
+/* Custom styles for animations & scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2d4a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b527a;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Budowlańcy",
+  "description": "Profesjonalny, płynny i zoptymalizowany asystent czasu pracy i zadań dla ekip budowlanych z animacjami framer-motion, kalkulatorem materiałowym, rejestratorem zdjęć z placu budowy oraz dźwiękowymi alertami szychty.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
